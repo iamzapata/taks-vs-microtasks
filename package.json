@@ -1,0 +1,14 @@
+{
+  "name": "schedules",
+  "version": "1.0.0",
+  "description": "tasks and microtasks comparison between browsers",
+  "author": "Andres Zapata",
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {
+    "parcel": "^2.5.0"
+  },
+  "dependencies": {
+    "highlight.js": "^11.5.1"
+  }
+}

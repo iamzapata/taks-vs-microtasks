@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tasks vs Microtasks</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <h1>Tasks vs Microtasks</h1>
+
+    <div class="layout-wrapper">
+      <section>
+        <article>
+          <p>
+            This site is inspired by
+            <a
+              href="https://twitter.com/jaffathecake"
+              target="_blank"
+              rel="noreferrer noopener"
+              >Jake Archibald's</a
+            >
+
+            <a
+              href="https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/"
+              target="_blank"
+              rel="noreferrer noopener"
+              >Tasks, microtasks, queues and schedules</a
+            >
+            post. The post is from August 2015 and it talks about microtask
+            queuing and execution in the browsers's event loop.
+          </p>
+
+          <p>
+            It was really dissapointing to read this and discover that order in
+            which different tasks and microtasks get executred is different in
+            each browser.
+          </p>
+
+          <p>
+            The code below is similar to the code in the original post but it
+            has three additinal functions invoked.
+            <code>requestIdleCallback</code>, <code>queueMicrotask</code> and
+            <code>requestAnimationFrame</code>
+          </p>
+        </article>
+      </section>
+
+      <section>
+        <pre>
+          <code id="source-code-section">
+            const outer = document.querySelector(".outer")
+            const inner = document.querySelector(".inner")
+      
+            new MutationObserver(function () {
+              console.log("mutate")
+            }).observe(outer, {
+              attributes: true,
+            })
+      
+            function onClick() {
+              console.log("click")
+      
+              setTimeout(function () {
+                console.log("timeout")
+              }, 0)
+      
+              if (window.requestIdleCallback) {
+                requestIdleCallback(function () {
+                  console.log("requestIdleCallback")
+                })
+              }
+      
+              Promise.resolve().then(function () {
+                console.log("promise")
+              })
+      
+              outer.setAttribute("data-random", Math.random())
+      
+              queueMicrotask(() => {
+                console.log("queue microtask")
+              })
+      
+              requestAnimationFrame(function () {
+                console.log("requestAnimationFrame")
+              })
+            }
+      
+            inner.addEventListener("click", onClick)
+            outer.addEventListener("click", onClick)
+          </code>
+        </pre>
+      </section>
+
+      <div class="main">
+        <section>
+          <div class="outer">
+            Hello,
+            <div class="inner">World!</div>
+          </div>
+        </section>
+
+        <section>
+          <ul id="console-logs"></ul>
+        </section>
+      </div>
+    </div>
+    <script id="source-code">
+      const consoleLogs = document.querySelector("#console-logs")
+      const outer = document.querySelector(".outer")
+      const inner = document.querySelector(".inner")
+
+      function writeToPre(text) {
+        const li = document.createElement("li")
+        li.textContent = text
+        consoleLogs.insertAdjacentElement("beforeend", li)
+      }
+
+      function log(string) {
+        console.log(string)
+        writeToPre(string)
+      }
+
+      // Important from here:
+      new MutationObserver(function () {
+        log("mutate")
+      }).observe(outer, {
+        attributes: true,
+      })
+
+      function onClick() {
+        log("click")
+
+        setTimeout(function () {
+          log("timeout")
+        }, 0)
+
+        if (window.requestIdleCallback) {
+          window.requestIdleCallback(function () {
+            log("requestIdleCallback")
+          })
+        }
+
+        Promise.resolve().then(function () {
+          log("promise")
+        })
+
+        outer.setAttribute("data-random", Math.random())
+
+        queueMicrotask(() => {
+          log("queue microtask")
+        })
+
+        window.requestAnimationFrame(function () {
+          log("requestAnimationFrame")
+        })
+      }
+
+      inner.addEventListener("click", onClick)
+      outer.addEventListener("click", onClick)
+    </script>
+
+    <script type="module">
+      import hljs from "highlight.js/lib/core"
+      import javascript from "highlight.js/lib/languages/javascript"
+      hljs.registerLanguage("javascript", javascript)
+
+      document.addEventListener("DOMContentLoaded", (event) => {
+        document.querySelectorAll("pre code").forEach((el) => {
+          hljs.highlightElement(el)
+        })
+      })
+    </script>
+  </body>
+</html>

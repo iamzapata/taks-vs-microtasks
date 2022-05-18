@@ -1,0 +1,98 @@
+@import "npm:highlight.js/styles/github.css";
+
+:root {
+  --layout-wrapper-width: 85ch;
+  --box-padding: 50px;
+  --box-margin: 25px;
+  --box-radius: 6px;
+  --gray-1: hsl(0, 0%, 93%);
+  --box-shadow: 3.7px 3.2px 16.3px -39px rgba(0, 0, 0, 0.024),
+    10.1px 8.8px 45.1px -39px rgba(0, 0, 0, 0.035),
+    24.4px 21.1px 108.5px -39px rgba(0, 0, 0, 0.046),
+    81px 70px 360px -39px rgba(0, 0, 0, 0.07);
+}
+
+html {
+  font-family: BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
+    "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  line-height: 1.73;
+}
+
+html,
+body {
+  height: 100vh;
+}
+
+body {
+  background-color: var(--gray-1);
+}
+
+h1 {
+  text-align: center;
+}
+
+pre,
+code {
+  margin: 0;
+}
+
+.layout-wrapper {
+  display: grid;
+  grid-template-columns: 1fr min(var(--layout-wrapper-width), 100% - 64px) 1fr;
+  grid-column-gap: 32px;
+}
+
+.layout-wrapper > * {
+  grid-column: 2;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.main {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  column-gap: 10px;
+}
+
+#console-logs {
+  border-radius: var(--box-radius);
+  box-shadow: var(--box-shadow);
+  height: 350px;
+  width: 180px;
+  max-height: 350px;
+  list-style: none;
+  min-height: 100%;
+  min-width: 100px;
+  background: white;
+  margin: 0;
+  padding: 0;
+  overflow-y: scroll;
+}
+
+#console-logs li {
+  padding: 2px;
+  border-bottom: solid 1px var(--gray-1);
+}
+
+.outer,
+.inner {
+  box-shadow: var(--box-shadow);
+  padding: var(--box-padding);
+  border-radius: var(--box-radius);
+  cursor: pointer;
+}
+
+.outer {
+  background-color: hsl(1, 100%, 71%);
+}
+
+.inner {
+  margin: var(--box-margin);
+  background-color: hsl(47, 94%, 72%);
+}
