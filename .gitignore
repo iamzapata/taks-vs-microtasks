@@ -3,3 +3,7 @@ node_modules
 .parcel-cache
 dist/
 yarn-error.log
+.vercel
+/test-results/
+/playwright-report/
+/playwright/.cache/

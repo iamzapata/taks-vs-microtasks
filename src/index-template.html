@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" >
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tasks vs Microtasks</title>
-    <link rel="stylesheet" href="styles.css" >
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <h1>Tasks vs Microtasks</h1>
@@ -15,15 +15,19 @@
         <article>
           <p>
             This site is inspired by
-            <a               href="https://twitter.com/jaffathecake"
+            <a
+              href="https://twitter.com/jaffathecake"
               target="_blank"
               rel="noreferrer noopener"
-              >Jake Archibald's</a>
+              >Jake Archibald's</a
+            >
 
-            <a               href="https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/"
+            <a
+              href="https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/"
               target="_blank"
               rel="noreferrer noopener"
-              >Tasks, microtasks, queues and schedules</a>
+              >Tasks, microtasks, queues and schedules</a
+            >
             post. The post is from August 2015 and it talks about microtask
             queuing and execution in the browsers's event loop.
           </p>
@@ -107,7 +111,7 @@
         </section>
       </div>
 
-      <section id="browsers-list"><div class='browser-snapshot chromium'> <h3>Chromium Version: 102.0.5005.40</h3><ul><li>clicked .inner</li><li>promise</li><li>mutate</li><li>queue microtask</li><li>clicked .outer</li><li>promise</li><li>mutate</li><li>queue microtask</li><li>requestAnimationFrame</li><li>requestAnimationFrame</li><li>timeout</li><li>timeout</li><li>requestIdleCallback</li><li>requestIdleCallback</li></ul></div><div class='browser-snapshot firefox'> <h3>Firefox Version: 99.0.1</h3><ul><li>clicked .inner</li><li>clicked .outer</li><li>promise</li><li>mutate</li><li>queue microtask</li><li>promise</li><li>queue microtask</li><li>timeout</li><li>timeout</li><li>requestAnimationFrame</li><li>requestAnimationFrame</li><li>requestIdleCallback</li><li>requestIdleCallback</li></ul></div><div class='browser-snapshot webkit'> <h3>Webkit Version: 15.4</h3><ul><li>clicked .inner</li><li>promise</li><li>mutate</li><li>queue microtask</li><li>clicked .outer</li><li>promise</li><li>mutate</li><li>queue microtask</li><li>timeout</li><li>timeout</li><li>requestAnimationFrame</li><li>requestAnimationFrame</li></ul></div></section>
+      <section id="browsers-list"></section>
     </div>
 
     <script id="source-code">
