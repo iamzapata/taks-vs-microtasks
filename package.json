@@ -7,10 +7,18 @@
   "private": false,
   "devDependencies": {
     "@playwright/test": "^1.22.1",
+    "node-html-parser": "^5.3.3",
+    "nodemon": "^2.0.16",
     "parcel": "^2.5.0"
   },
   "dependencies": {
-    "highlight.js": "^11.5.1"
+    "highlight.js": "^11.5.1",
+    "playwright": "^1.22.1"
   },
-  "scripts": {}
+  "scripts": {
+    "prebuild": "yarn build:browsers && yarn build:html",
+    "build": "parcel build src/index.html",
+    "build:browsers": "node scripts/browsers.js",
+    "build:html": "node scripts/build-html.js"
+  }
 }
